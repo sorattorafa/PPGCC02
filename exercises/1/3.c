@@ -11,36 +11,38 @@ simplificação considere que cada mês possui somente 4 semanas. Calcule e impr
 
 using namespace std;
 
-int main() {
-    // declaração da matriz 12x4
-    int vendas[12][4];
+#include <stdio.h>
 
-    // preenchimento da matriz e cálculo dos totais
+int main()
+{ // preenchimento da matriz e cálculo dos totais
     int totalMes[12] = {0};
     int totalSemana[4] = {0};
     int totalAno = 0;
-    for (int i = 0; i < 12*4; i++) {
+    for (int i = 0; i < 12 * 4; i++)
+    {
         int mes = i / 4;
         int semana = i % 4;
-        cout << "Informe as vendas do mes " << mes+1 << " semana " << semana+1 << ": ";
-        cin >> vendas[mes][semana];
+        printf("Informe as vendas do mes %d semana %d: ", mes + 1, semana + 1);
+        scanf("%d", &vendas[mes][semana]);
         totalMes[mes] += vendas[mes][semana];
         totalSemana[semana] += vendas[mes][semana];
         totalAno += vendas[mes][semana];
     }
 
     // impressão dos totais
-    cout << "Total vendido em cada mes do ano:" << endl;
-    for (int i = 0; i < 12; i++) {
-        cout << "Mes " << i+1 << ": R$ " << totalMes[i] << endl;
+    printf("Total vendido em cada mes do ano:\n");
+    for (int i = 0; i < 12; i++)
+    {
+        printf("Mes %d: R$ %d\n", i + 1, totalMes[i]);
     }
 
-    cout << "Total vendido em cada semana durante todo o ano:" << endl;
-    for (int i = 0; i < 4; i++) {
-        cout << "Semana " << i+1 << ": R$ " << totalSemana[i] << endl;
+    printf("Total vendido em cada semana durante todo o ano:\n");
+    for (int i = 0; i < 4; i++)
+    {
+        printf("Semana %d: R$ %d\n", i + 1, totalSemana[i]);
     }
 
-    cout << "Total vendido no ano: R$ " << totalAno << endl;
+    printf("Total vendido no ano: R$ %d\n", totalAno);
 
     return 0;
 }
