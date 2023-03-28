@@ -7,42 +7,40 @@ simplificação considere que cada mês possui somente 4 semanas. Calcule e impr
     - Total vendido no ano.
 */
 
-#include <iostream>
-
-using namespace std;
-
 #include <stdio.h>
 
-int main()
-{ // preenchimento da matriz e cálculo dos totais
-    int totalMes[12] = {0};
-    int totalSemana[4] = {0};
-    int totalAno = 0;
-    for (int i = 0; i < 12 * 4; i++)
-    {
-        int mes = i / 4;
-        int semana = i % 4;
-        printf("Informe as vendas do mes %d semana %d: ", mes + 1, semana + 1);
-        scanf("%d", &vendas[mes][semana]);
-        totalMes[mes] += vendas[mes][semana];
-        totalSemana[semana] += vendas[mes][semana];
-        totalAno += vendas[mes][semana];
+int main() {
+    int vendas[12][4]; // matriz 12x4 para armazenar as vendas
+    int total_mes[12] = {0}; // vetor para armazenar o total vendido em cada mês
+    int total_semana[4] = {0}; // vetor para armazenar o total vendido em cada semana
+    int total_ano = 0; // variável para armazenar o total vendido no ano
+    int i, j;
+
+    // Laço para ler as vendas de cada mês e semana
+    for (i = 0; i < 12; i++) {
+        for (j = 0; j < 4; j++) {
+            printf("Digite o valor vendido na semana %d do mês %d: ", j+1, i+1);
+            scanf("%d", &vendas[i][j]);
+            total_mes[i] += vendas[i][j]; // acumula o total vendido no mês
+            total_semana[j] += vendas[i][j]; // acumula o total vendido na semana
+            total_ano += vendas[i][j]; // acumula o total vendido no ano
+        }
     }
 
-    // impressão dos totais
-    printf("Total vendido em cada mes do ano:\n");
-    for (int i = 0; i < 12; i++)
-    {
-        printf("Mes %d: R$ %d\n", i + 1, totalMes[i]);
+    // Imprime o total vendido em cada mês
+    printf("Total vendido em cada mês:\n");
+    for (i = 0; i < 12; i++) {
+        printf("Mês %d: R$ %d\n", i+1, total_mes[i]);
     }
 
-    printf("Total vendido em cada semana durante todo o ano:\n");
-    for (int i = 0; i < 4; i++)
-    {
-        printf("Semana %d: R$ %d\n", i + 1, totalSemana[i]);
+    // Imprime o total vendido em cada semana
+    printf("Total vendido em cada semana:\n");
+    for (j = 0; j < 4; j++) {
+        printf("Semana %d: R$ %d\n", j+1, total_semana[j]);
     }
 
-    printf("Total vendido no ano: R$ %d\n", totalAno);
+    // Imprime o total vendido no ano
+    printf("Total vendido no ano: R$ %d\n", total_ano);
 
     return 0;
 }
